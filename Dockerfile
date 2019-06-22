@@ -1,3 +1,4 @@
+# TODO separate build image
 FROM ubuntu:18.04
 
 ENV SRC_PATH /src

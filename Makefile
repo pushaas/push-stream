@@ -1,13 +1,34 @@
 .PHONY: \
-	build \
-	run
+	docker-build \
+	docker-run \
+	docker-build-and-run \
+	docker-push
 
-IMAGE := "rafaeleyng/push-stream"
+CONTAINER := push-stream
+IMAGE := rafaeleyng/push-stream
+IMAGE_TAGGED := $(IMAGE):latest
+NETWORK := push-service-network
+PORT_CONTAINER := 9080
+PORT_HOST := 9080
 
-build:
-	docker build -t rafaeleyng/push-stream .
+docker-build:
+	@docker build \
+		-t $(IMAGE) \
+		.
 
-run:
-	docker run -d --name push-stream -p 9080:9080 $(IMAGE)
+docker-clean:
+	@-docker rm -f $(CONTAINER)
 
-build-and-run: build run
+docker-run: docker-clean
+	@docker run \
+		-d \
+		--name $(CONTAINER) \
+		--network $(NETWORK) \
+		-p $(PORT_HOST):$(PORT_CONTAINER) \
+		$(IMAGE_TAGGED)
+
+docker-build-and-run: docker-build docker-run
+
+docker-push: docker-build
+	@docker push \
+		$(IMAGE)
