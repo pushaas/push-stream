@@ -1,5 +1,5 @@
 CONTAINER := push-stream
-IMAGE := rafaeleyng/push-stream
+IMAGE := rafaeleyng/$(CONTAINER)
 IMAGE_TAGGED := $(IMAGE):latest
 NETWORK := push-service-network
 PORT_CONTAINER := 9080
