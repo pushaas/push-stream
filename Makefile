@@ -1,7 +1,6 @@
 CONTAINER := push-stream
 IMAGE := rafaeleyng/$(CONTAINER)
 IMAGE_TAGGED := $(IMAGE):latest
-NETWORK := push-service-network
 PORT_CONTAINER := 9080
 PORT_HOST := 9080
 
@@ -20,7 +19,6 @@ docker-run: docker-clean
 	@docker run \
 		-d \
 		--name $(CONTAINER) \
-		--network $(NETWORK) \
 		-p $(PORT_HOST):$(PORT_CONTAINER) \
 		$(IMAGE_TAGGED)
 
