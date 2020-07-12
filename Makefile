@@ -1,6 +1,6 @@
 TAG := latest
 CONTAINER := push-stream
-IMAGE := rafaeleyng/$(CONTAINER)
+IMAGE := pushaas/$(CONTAINER)
 IMAGE_TAGGED := $(IMAGE):$(TAG)
 NETWORK := push-service-network
 PORT_CONTAINER := 9080
